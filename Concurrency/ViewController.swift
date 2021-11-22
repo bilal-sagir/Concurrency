@@ -5,7 +5,6 @@ struct MyNotification
     static let dowloadEnded = Notification.Name("com.bilal-sagir.app.kvo")
 }
 
-
 class AppData
 {
     class func notify ()
@@ -19,9 +18,6 @@ class AppData
     }
 }
 
-
-
-
 class ViewController: UIViewController
 {
 
@@ -31,7 +27,6 @@ class ViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(gotNotified(_:)),
                                                name: MyNotification.dowloadEnded,
