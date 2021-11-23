@@ -6,7 +6,6 @@ class MainTableViewController: UITableViewController
     
     let operations = PendingCalculations ()
     
-    
     func setPlaceHolders()
     {
         for _ in 0..<1000{
@@ -22,65 +21,51 @@ class MainTableViewController: UITableViewController
     {
         setPlaceHolders()
     }
-    
-    override func tableView(_ tableView: UITableView,
-                            numberOfRowsInSection section: Int) -> Int
-    {
-        return values.count
-    }
-    
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
-    {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellId")!
-        
-        let thisValue = values[indexPath.row]
-        
-        if thisValue.state == .new{
-            cell.backgroundColor = .white
-            cell.textLabel?.text = "Calculating....."
-            
-            if !tableView.isDragging && !tableView.isDecelerating
-            {
-                startOperation(val: thisValue, indexPath: indexPath)
-            }
-        }
-        else
-        {
-            cell.backgroundColor = .systemGreen
-            cell.textLabel?.text = thisValue.value
-        }
-        
-        return cell
-    }
-    
 }
-
 
 extension MainTableViewController
 {
-    func startOperation(val : Average, indexPath: IndexPath)
+    override func scrollViewWillBeginDragging(_ scrollView: UIScrollView)
     {
-        if val.state != .new {return}
-        
-        guard operations.calculations[indexPath] == nil else {return}
-        
-        let thisCal = SingleCalculator(average: val)
-        
-        thisCal.completionBlock = {
-            if thisCal.isCancelled {return}
-            
-            DispatchQueue.main.async {
-                val.state = .found
-                self.operations.calculations.removeValue(forKey: indexPath)
-                self.tableView.reloadRows(at: [indexPath], with: .fade)
-            }
-            
+        operations.queue.isSuspended = true
+    }
+    override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool)
+    {
+        if !decelerate
+        {
+            loadAllCells()
         }
+    }
+    
+    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView)
+    {
+        loadAllCells()
+    }
+    
+    func loadAllCells()
+    {
+        operations.queue.isSuspended = false
+        guard let visibleIndexPaths = tableView.indexPathsForVisibleRows else {return}
         
-        operations.calculations[indexPath] = thisCal
-        operations.queue.addOperation(thisCal)
+        let visible = Set(visibleIndexPaths)
         
+        let pendingOperations = Set(operations.calculations.keys)
         
+        var cancelThem = pendingOperations
+        cancelThem.subtract(visible)
+        
+        var startThem = visible
+        startThem.subtract(pendingOperations)
+        
+        for indexPath in cancelThem{
+            if let pending = operations.calculations[indexPath]{
+                pending.cancel()
+            }
+            operations.calculations.removeValue(forKey: indexPath)
+        }
+        for indexPath in startThem{
+            let curCalc = values[indexPath.row]
+            startOperation(val: curCalc, indexPath: indexPath)
+        }
     }
 }
