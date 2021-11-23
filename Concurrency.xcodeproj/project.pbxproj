@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9C703842274D24EC00C9F45C /* Average.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C703841274D24EC00C9F45C /* Average.swift */; };
 		9C703844274D258300C9F45C /* SingleCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C703843274D258300C9F45C /* SingleCalculator.swift */; };
+		9C703846274D298500C9F45C /* PendingCalculations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C703845274D298500C9F45C /* PendingCalculations.swift */; };
 		9CEBBCC9274BD9FD003152C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEBBCC8274BD9FD003152C9 /* AppDelegate.swift */; };
 		9CEBBCCB274BD9FD003152C9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEBBCCA274BD9FD003152C9 /* SceneDelegate.swift */; };
 		9CEBBCCD274BD9FD003152C9 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEBBCCC274BD9FD003152C9 /* MainTableViewController.swift */; };
@@ -20,6 +21,7 @@
 /* Begin PBXFileReference section */
 		9C703841274D24EC00C9F45C /* Average.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Average.swift; sourceTree = "<group>"; };
 		9C703843274D258300C9F45C /* SingleCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleCalculator.swift; sourceTree = "<group>"; };
+		9C703845274D298500C9F45C /* PendingCalculations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingCalculations.swift; sourceTree = "<group>"; };
 		9CEBBCC5274BD9FD003152C9 /* Concurrency.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Concurrency.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CEBBCC8274BD9FD003152C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9CEBBCCA274BD9FD003152C9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				9CEBBCC8274BD9FD003152C9 /* AppDelegate.swift */,
 				9CEBBCCA274BD9FD003152C9 /* SceneDelegate.swift */,
 				9CEBBCCC274BD9FD003152C9 /* MainTableViewController.swift */,
+				9C703845274D298500C9F45C /* PendingCalculations.swift */,
 				9C703843274D258300C9F45C /* SingleCalculator.swift */,
 				9C703841274D24EC00C9F45C /* Average.swift */,
 				9CEBBCCE274BD9FD003152C9 /* Main.storyboard */,
@@ -145,6 +148,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9CEBBCCD274BD9FD003152C9 /* MainTableViewController.swift in Sources */,
+				9C703846274D298500C9F45C /* PendingCalculations.swift in Sources */,
 				9CEBBCC9274BD9FD003152C9 /* AppDelegate.swift in Sources */,
 				9CEBBCCB274BD9FD003152C9 /* SceneDelegate.swift in Sources */,
 				9C703842274D24EC00C9F45C /* Average.swift in Sources */,
